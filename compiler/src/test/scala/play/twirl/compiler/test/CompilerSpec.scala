@@ -64,7 +64,7 @@ class CompilerSpec extends AnyWordSpec with Matchers {
 @(test.length + 1)
 @(test.+(3))
 
-(5: @unchecked) match @test.length""")
+5 match @test.length""")
     }
 
     "compile successfully (hello)" in {
@@ -346,6 +346,7 @@ object Helper {
           override def display(pos: Position, msg: String, severity: Severity): Unit = {
             pos match {
               case scala.reflect.internal.util.NoPosition => // do nothing
+              case _ if severity == WARNING               => // do nothing
               case _                                      => compileErrors.append(CompilationError(msg, pos.line, pos.point))
             }
           }
