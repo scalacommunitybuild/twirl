@@ -64,7 +64,7 @@ class CompilerSpec extends AnyWordSpec with Matchers {
 @(test.length + 1)
 @(test.+(3))
 
-5 match @test.length""")
+(5: @unchecked) match @test.length""")
     }
 
     "compile successfully (hello)" in {
